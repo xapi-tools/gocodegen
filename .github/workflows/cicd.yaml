@@ -1,0 +1,42 @@
+name: CI/CD
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: "true"
+
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: "1.20"
+
+      - name: Unit Test
+        run: go test -v ./...
+
+      # - name: Doc Test
+      #   run: |
+      #     rm -rf testout && mkdir -p testout
+      #     sed -n '16,60p' readme.md > testout/doctest.go
+      #     cd testout && go run doctest.go && cat *
+
+  lint:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: "true"
+
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: "1.20"
+
+      - name: Lint
+        uses: golangci/golangci-lint-action@v3
