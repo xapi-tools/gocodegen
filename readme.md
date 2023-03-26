@@ -15,10 +15,10 @@ This package provides Go structures for constructs used in Go source code and a 
     ```go
     package main
 
-    import gfg "github.com/xapi-tools/gocodegen"
+    import gcg "github.com/xapi-tools/gocodegen"
 
     func main() {
-        gw := gfg.NewGoFileWriter()
+        gw := gcg.NewGoFileWriter()
 
         gw.ToFile("./test.go")
     }
